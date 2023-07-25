@@ -1,0 +1,23 @@
+@keyframes menu {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(20%);
+  }
+  50% {
+    transform: translateX(30%);
+  }
+  60% {
+    transform: translateX(40%);
+  }
+  75% {
+    transform: translateX(50%);
+  }
+  85% {
+    transform: translateX(60%);
+  }
+  100% {
+    transform: translateX(70%);
+  }
+}

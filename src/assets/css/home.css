@@ -1,0 +1,138 @@
+/* <-------DESKTOP DEVICES-----------> */
+@media (max-width: 1400px) {
+  header {
+    padding: 0.7rem 1.5rem;
+  }
+  header nav {
+    gap: 3.3rem;
+  }
+  header #mobile-menu {
+    display: none;
+  }
+  header #menu {
+    display: none;
+  }
+  .hero {
+    margin-top: 8%;
+  }
+  .hero .col {
+    width: 50%;
+  }
+  .section .row .col {
+    width: 50%;
+  }
+  .contact {
+    width: 50%;
+    margin: 0.5rem auto;
+  }
+  .contact #contct-img {
+    width: 300px;
+    height: 300px;
+  }
+}
+/* <-------LAPTOP OR TABLET DEVICES-----------> */
+@media (max-width: 1000px) {
+  header {
+    padding: 0.7rem 1.5rem;
+  }
+  header nav {
+    gap: 2rem;
+  }
+  header #mobile-menu {
+    display: none;
+  }
+  header #menu {
+    display: none;
+  }
+  .hero {
+    margin-top: 8%;
+  }
+  .hero .col {
+    width: 50%;
+  }
+  .section .row .col {
+    width: 50%;
+  }
+  .contact {
+    width: 50%;
+    margin: 0.5rem auto;
+  }
+  .contact #contct-img {
+    width: 300px;
+    height: 300px;
+  }
+}
+/* <-------MOBILE DEVICES-----------> */
+@media (max-width: 500px) {
+  header nav,
+  header nav a {
+    display: none;
+  }
+  header #mobile-menu {
+    display: block;
+  }
+
+  header .mobileMenu {
+    position: absolute;
+    left: -180px;
+    top: 0;
+    height: 100vh;
+    width: 70%;
+    transform: translateX(70%);
+    background: #00233d;
+    padding: 1rem;
+    border-radius: 5px;
+    animation: menu 0.2s linear;
+    overflow: scroll;
+    z-index: 0;
+  }
+  header .mobileMenu li {
+    width: 100%;
+    list-style: none;
+    color: #fff;
+    font-weight: 500;
+    background: #002847;
+    margin: 1.2rem auto;
+    padding: 0.7rem 0;
+    text-align: left;
+  }
+  header .mobileMenu li a {
+    width: 100%;
+    color: #fff;
+    text-align: left;
+    display: inline block;
+    font-weight: 500;
+    background: #002847;
+    border-radius: 5px;
+    padding: 0.7rem 20%;
+    text-decoration: none;
+  }
+  .mobileMenu a:hover {
+    background: #199cff;
+  }
+  .hero {
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero .col {
+    width: 100%;
+  }
+  .section .row {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+  }
+  .section .row .col {
+    width: 100%;
+  }
+  .contact {
+    width: 100%;
+    margin: 0.5rem auto;
+  }
+  .contact #contct-img {
+    width: 90%;
+    height: 300px;
+  }
+}

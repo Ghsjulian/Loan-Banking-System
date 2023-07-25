@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="src/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/assets/css/home.css" />
+    <link rel="stylesheet" href="src/assets/css/animation.css" />
+    <link rel="stylesheet" href="src/assets/css/index.css" />
+    <title>Portfolio | Ghs Julian Web Developer & Designer</title>
+  </head>
+  <body>
+    <header>
+      <h3 class="logo">St.Famscilla</h3>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Services</a>
+        <a href="#">Projects</a>
+      </nav>
+      <span id="mobile-menu" onclick="OpenMenu()"
+        ><i class="bi bi-list"></i
+      ></span>
+      <div style="display: none" id="menu" data="0" class="mobileMenu">
+        <li>
+          <a href="Main.html"><i class="bi bi-grid"></i>Dashboard</a>
+        </li>
+        <li>
+          <a href="Dashboard.html"><i class="bi bi-bell"></i>Notification</a>
+          <span id="budget">3</span>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-arrow-left-circle"></i>Logout</a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-palette"></i>Customize</a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-gear"></i>Settings</a>
+        </li>
+      </div>
+    </header>
+    <div class="hero">
+      <div class="col">
+        <h2><i class="bi bi-currency-exchange"></i> Your Loan History</h2>
+        <h2 id="currentbalance">Current Balance</h2>
+        <div id="money">
+          <h3>50$</h3>
+        </div>
+        <p id="info">
+          You can download your loan info , or pay your loan . once you pay your
+          current loan you can apply again for getting new amount . Stay
+          connected with us.
+        </p>
+        <div class="pay">
+          <a id="hire" href="#">Pay Now</a>
+          <a id="cv" href="#">Download History</a>
+        </div>
+        <div id="noti"></div>
+      </div>
+    </div>
+    <script>
+      function ghs__(tag) {
+        return document.querySelector(tag);
+      }
+    </script>
+    <script src="src/assets/js/index.js"></script>
+  </body>
+</html>
