@@ -51,7 +51,7 @@ account ! It'll be notify in the applicants account.
 </p>
 <div class="button-area">
 Did you pay ?
-<button type="button" id="btn_accept" name="contact-btn">
+<button type="button" id="btn_accept" name="contact-btn" onclick="YesPaid(<?php echo $_GET['user_id'] ?>)">
 Yes! Confirm
 </button>
 </div>
@@ -145,6 +145,18 @@ console.log(data);
 });
 }
 getApplication(<?php echo $_GET['user_id'] ?>);
+
+function YesPaid(u_id) {
+fetch(
+`http://localhost:8000/Bank/API/server/functions/application.php?getloan=${u_id}`
+)
+.then((res) => {
+return res.text();
+}).then((data)=>{
+  alert(data)
+})
+}
+
 </script>
 <script src="src/assets/js/index.js"></script>
 </body>

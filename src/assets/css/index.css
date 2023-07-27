@@ -712,8 +712,8 @@ li #indexValue {
 }
 .pay #hire {
   font-weight: 500;
-  padding: 0.5rem 1rem;
-  margin: 0.4rem 1rem;
+  padding: 0.5rem 0.4rem;
+  margin: 0.4rem;
   outline: none;
   font-size: 15px;
   background: #0067b9;
@@ -724,8 +724,8 @@ li #indexValue {
 }
 .pay #cv {
   font-weight: 500;
-  padding: 0.5rem 1rem;
-  margin: 0.4rem 1rem;
+  padding: 0.5rem 0.4rem;
+  margin: 0.4rem;
   font-size: 15px;
   outline: none;
   background: #00890f;

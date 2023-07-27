@@ -26,6 +26,9 @@ $user = $session['id'];
       <li>
         <a href="http://localhost:8000/Bank/profile"><i class="bi bi-person-circle"></i>Profile</a>
       </li>
+            <li>
+        <a href="http://localhost:8000/Bank/user-notification"><i class="bi bi-bell"></i>notification<span id="budget">0</span></a>
+      </li>
       <li>
         <a href="http://localhost:8000/Bank/loan-history"><i class="bi bi-credit-card-2-front"></i>Loan </a>
       </li>

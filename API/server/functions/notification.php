@@ -15,12 +15,18 @@ $requestMethod = $_SERVER["REQUEST_METHOD"];
 if (isset($_GET['count'])) {
   $sql = "SELECT * FROM notification";
   $query = $__DB__->__SELECT__($sql);
-  echo count($query);
+  if ($query) {
+    echo count($query);
+  } else {
+    echo 0;
+  }
 }
 if (isset($_GET['fetch'])) {
   $sql = "SELECT * FROM notification";
   $query = $__DB__->__SELECT__($sql);
-  echo json_encode($query);
+  if ($query) {
+    echo json_encode($query);
+  }
 }
 
 if (isset($_GET['user_id'])) {
@@ -30,5 +36,18 @@ if (isset($_GET['user_id'])) {
   echo json_encode($data);
 }
 
+if (isset($_GET['user_noti'])) {
+  $user_id = $_SESSION['u_info']['id'];
+  $sql = "SELECT * FROM users WHERE id='$user_id'";
+  $query = $__DB__->SelectSingle($sql);
+  if ($query) {
+    if($query['verification']==1){
+      $update = "UPDATE users SET verification='0' WHERE id='$user_id'";
+      $__DB__->__INSERT__($update);
+    } 
+  } else {
+    echo 0;
+  }
+}
 
 ?>

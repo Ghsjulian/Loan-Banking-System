@@ -31,7 +31,7 @@
         </li>
         <li>
           <a href="Dashboard.html"><i class="bi bi-bell"></i>Notification</a>
-          <span id="budget">3</span>
+          <span id="budget">0</span>
         </li>
         <li>
           <a href="#"><i class="bi bi-arrow-left-circle"></i>Logout</a>
@@ -45,28 +45,89 @@
       </div>
     </header>
     <div class="hero">
-      <div class="col">
+      <div class="column">
         <h2><i class="bi bi-currency-exchange"></i> Your Loan History</h2>
         <h2 id="currentbalance">Current Balance</h2>
         <div id="money">
-          <h3>50$</h3>
+          <h3 id="usd">0$</h3>
+          <input id="user_id" type="number" value="" hidden="true" />
         </div>
         <p id="info">
           You can download your loan info , or pay your loan . once you pay your
           current loan you can apply again for getting new amount . Stay
           connected with us.
         </p>
-        <div class="pay">
+        <div style="display: none" class="pay">
           <a id="hire" href="#">Pay Now</a>
           <a id="cv" href="#">Download History</a>
         </div>
-        <div id="noti"></div>
+        <div id="noti">
+          <!---
+          <li id="loan-history" class="list--">
+            <a href="#"
+              ><img src="API/server/users_avtar/ghs__04386.jpg" /><strong
+                ><b id="u-name">You</b> Applied For 500$. Your Application
+                Successfully Accepted By The Admin</strong
+              ></a
+            ><span id="time">23:2023</span>
+          </li>
+       ---->
+        </div>
       </div>
     </div>
     <script>
       function ghs__(tag) {
         return document.querySelector(tag);
       }
+
+      function Balance() {
+        fetch(
+          `http://localhost:8000/Bank/API/server/functions/application.php?getpayment=__ghs`
+        )
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            if (data.loan_amount) {
+              ghs__("#usd").textContent = data.loan_amount + "$";
+              console.log(data);
+              ghs__(".pay").style.display = "block";
+              ghs__("#user_id").value = data.user_id;
+            }
+          });
+      }
+      Balance();
+      function getApplication() {
+        fetch(
+          `http://localhost:8000/Bank/API/server/functions/application.php?getApplication=__ghs`
+        )
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            if (data) {
+              html = `
+<li id="loan-history" class="list--"><a href="#"><img src="API/server/users_avtar/${data.user_avtar}" /><strong><b id="u-name">You</b> Applied For ${data.amount}. Your Application Successfully
+Accepted By The Admin</strong></a><span id="time">${data.time}</span></li>
+`;
+              ghs__("#noti").innerHTML = html;
+            }
+          });
+      }
+      getApplication();
+
+      function GetNoti() {
+        fetch(
+          `http://localhost:8000/Bank/API/server/functions/application.php?getusernoti=__ghs`
+        )
+          .then((res) => {
+            return res.text();
+          })
+          .then((data) => {
+            ghs__("#budget").textContent = data;
+          });
+      }
+      GetNoti();
     </script>
     <script src="src/assets/js/index.js"></script>
   </body>

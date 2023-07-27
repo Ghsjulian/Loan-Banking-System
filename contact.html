@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="src/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/assets/css/home.css" />
+    <link rel="stylesheet" href="src/assets/css/animation.css" />
+    <link rel="stylesheet" href="src/assets/css/index.css" />
+    <title>Portfolio | Ghs Julian Web Developer & Designer</title>
+  </head>
+  <body>
+    <header>
+      <h3 class="logo">St.Famscilla</h3>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Services</a>
+        <a href="#">Projects</a>
+      </nav>
+      <span id="mobile-menu" onclick="OpenMenu()"
+        ><i class="bi bi-list"></i
+      ></span>
+      <div style="display: none" id="menu" data="0" class="mobileMenu">
+        <li>
+          <a href="Main.html"><i class="bi bi-grid"></i>Dashboard</a>
+        </li>
+        <li>
+          <a href="Dashboard.html"><i class="bi bi-bell"></i>Notification</a>
+          <span id="budget">3</span>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-arrow-left-circle"></i>Logout</a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-palette"></i>Customize</a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-gear"></i>Settings</a>
+        </li>
+      </div>
+    </header>
+    <div class="hero">
+      <div class="section">
+        <div class="contact">
+          <h2>Contact Us</h2>
+          <p id="txt">
+            You can always and anytime contact with me . Here I've dropped my
+            contact details so that you can able contact with me . You can also
+            find me on social medias . After contacting with me you'll know more
+            about myself . Thank You !
+          </p>
+          <div class="contact-form">
+            <div id="message"></div>
+           <form id="contact-form">
+            <input
+              type="email"
+              placeholder="Enter Email"
+              id="email"
+              name="email"
+              accept="email"
+              autocomplete="on"
+            />
+            <input
+              type="text"
+              placeholder="Write Subject"
+              id="subject"
+              name="subject"
+            />
+            <textarea
+              type="text"
+              placeholder="Write Message"
+              id="msg"
+              name="message"
+              value=""
+            ></textarea>
+            <button
+              type="button"
+              id="btn"
+              name="contact-btn"
+              onclick="Contact()"
+            >
+              Contact
+            </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function ghs__(tag) {
+        return document.querySelector(tag);
+      }
+      ghs__("f")
+    </script>
+    <script src="src/assets/js/index.js"></script>
+  </body>
+</html>

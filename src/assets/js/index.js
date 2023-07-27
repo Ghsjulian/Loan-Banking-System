@@ -176,13 +176,13 @@ function Apply() {
         return res.json();
       })
       .then((data) => {
-     //   alert(data);
+        //   alert(data);
         if (data.status) {
           __ghs("#message").classList.add("success");
           __ghs("#message").style.display = "block";
           __ghs("#application_form").reset();
           __ghs("#message").textContent = data.message;
-window.location.href = "http://localhost:8000/Bank/view"
+          window.location.href = "http://localhost:8000/Bank/loan-history";
         } else {
           __ghs("#application_form").reset();
           __ghs("#message").classList.add("error");
@@ -255,4 +255,54 @@ function __date__() {
   return (
     d.getDate() + " " + currentMonth + " " + d.getHours() + ":" + d.getMinutes()
   );
+}
+
+function Contact() {
+  var fdata = new FormData(ghs__("#contact-form"));
+  var subject = ghs__("#subject").value;
+  var email = ghs__("#email").value;
+  var msg = ghs__("#msg").value;
+  fdata.append("action", "Contact");
+  if (email === "") {
+    __ghs("#message").classList.add("error");
+    __ghs("#message").style.display = "block";
+    __ghs("#message").textContent = "Enter User Email!";
+  } else if (!check_email(email)) {
+    __ghs("#message").classList.add("error");
+    __ghs("#message").style.display = "block";
+    __ghs("#message").textContent = "Invalid User Email!";
+  } else if (subject === "") {
+    __ghs("#msg").classList.add("error");
+    __ghs("#message").style.display = "block";
+    __ghs("#message").textContent = "Write Your Subject";
+  } else if (msg === "") {
+    __ghs("#message").classList.add("error");
+    __ghs("#message").style.display = "block";
+    __ghs("#message").textContent = "Please Write Your Message";
+  } else {
+    fetch(`http://ghs.rf.gd/Bank/API/server/functions/email.php`, {
+      method: "POST",
+      body: fdata,
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.status) {
+          __ghs("#message").classList.add("success");
+          __ghs("#message").style.display = "block";
+          __ghs("#contact-form").reset();
+          __ghs("#message").textContent = data.message;
+        } else {
+          __ghs("#message").classList.add("error");
+          __ghs("#message").style.display = "block";
+          __ghs("#message").textContent = data.message;
+        }
+      });
+    setTimeout(() => {
+      __ghs("#message").classList.remove("error") ||
+        __ghs("#message").classList.remove("success");
+      __ghs("#message").textContent = "";
+    }, 3000);
+  }
 }

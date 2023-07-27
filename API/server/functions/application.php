@@ -46,29 +46,37 @@ if ($requestMethod == "POST") {
       "message" => "You've Applied Already !"
     ));
   } else {
-    $sql = "INSERT INTO `application`( `user_id`,`bank_name`, `user_name`, `user_email`, `phone_number`, `account_number`,`zip_code`,`city`,`state`,`home_address`,`bvn_number`,`nin_number`,`loan_amount`,`time`)VALUES('$user_id','$bank','$name','$email','$phone_number','$bank_number','$zip_code','$city','$state','$home_address','$bvn_number','$nin_number','$amount','$time')";
-    $query = $__DB__->__INSERT__($sql);
-    if ($query) {
-      $text = "Applied For Getting Loan";
-      $getSql = "SELECT user_avtar FROM users WHERE id='$user_id'";
-      $avtar = $__DB__->SelectSingle($getSql);
-      $userIcon = $avtar['user_avtar'];
-      $sql_noti = "INSERT INTO `notification`(`user_id`, `user_name`, `notification`,`user_avtar`,`time`) VALUES ('$user_id','$name','$text','$userIcon','$time')";
-      if ($__DB__->__INSERT__($sql_noti)) {
-        $loansql = "INSERT INTO `loan_history`(`user_id`, `user_avtar`, `amount`, `notification`, `time`) VALUES ('$user_id','$user_pic','$amount','__ghs__','$time')";
-        $__DB__->__INSERT__($loansql);
-        echo json_encode(array(
-          "status" => true,
-          "message" => "Application successfully Submitted"
-        ));
-      }
-      /*
+    $select_paid = "SELECT * FROM paid WHERE user_id='$user_id'";
+    if ($__DB__->SelectSingle($select_paid)) {
+      echo json_encode(array(
+        "status" => false,
+        "message" => "You've Already Loan !"
+      ));
+    } else {
+      $sql = "INSERT INTO `application`( `user_id`,`bank_name`, `user_name`, `user_email`, `phone_number`, `account_number`,`zip_code`,`city`,`state`,`home_address`,`bvn_number`,`nin_number`,`loan_amount`,`time`)VALUES('$user_id','$bank','$name','$email','$phone_number','$bank_number','$zip_code','$city','$state','$home_address','$bvn_number','$nin_number','$amount','$time')";
+      $query = $__DB__->__INSERT__($sql);
+      if ($query) {
+        $text = "Applied For Getting Loan";
+        $getSql = "SELECT user_avtar FROM users WHERE id='$user_id'";
+        $avtar = $__DB__->SelectSingle($getSql);
+        $userIcon = $avtar['user_avtar'];
+        $sql_noti = "INSERT INTO `notification`(`user_id`, `user_name`, `notification`,`user_avtar`,`time`) VALUES ('$user_id','$name','$text','$userIcon','$time')";
+        if ($__DB__->__INSERT__($sql_noti)) {
+          $loansql = "INSERT INTO `loan_history`(`user_id`, `user_avtar`, `amount`, `notification`, `time`) VALUES ('$user_id','$user_pic','$amount','__ghs__','$time')";
+          $__DB__->__INSERT__($loansql);
+          echo json_encode(array(
+            "status" => true,
+            "message" => "Application successfully Submitted"
+          ));
+        }
+        /*
     *
     *
     *
     *
     *
     */
+      }
     }
   }
 }
@@ -107,4 +115,74 @@ if (isset($_GET['getApplication'])) {
   echo json_encode($data);
   // echo $getSql;
 }
+
+
+if (isset($_GET['getloan'])) {
+  $id = $_GET['getloan'];
+  $getSql = "SELECT * FROM application WHERE user_id='$id'";
+  $data = $__DB__->SelectSingle($getSql);
+  $user_id = $data['user_id'];
+  $u_name = $data['user_name'];
+  $loan_amount = $data['loan_amount'];
+  $user_id = $data['user_id'];
+  $phone_number = $data['phone_number'];
+  $email = $data['user_email'];
+  $account_number = $data['account_number'];
+  $sql = "INSERT INTO `paid`(`user_id`, `user_name`, `account_name`, `loan_amount`, `user_email`, `phone_number`)VALUES('$user_id','$u_name','$account_number','$loan_amount','$email','$phone_number')";
+  $query = $__DB__->__INSERT__($sql);
+  if ($query) {
+    $delete1 = "DELETE FROM notification WHERE user_id='$user_id'";
+    $delete2 = "DELETE FROM application WHERE user_id='$user_id'";
+    $delete3 = "DELETE FROM loan_history WHERE user_id='$user_id'";
+    $delete_query = $__DB__->__INSERT__($delete1);
+    $delete_query = $__DB__->__INSERT__($delete2);
+    $delete_query = $__DB__->__INSERT__($delete3);
+    if ($delete_query) {
+      $update = "UPDATE users SET verification='1' WHERE id='$user_id'";
+      $__DB__->__INSERT__($update);
+      echo "Payment Sent Successfully";
+    }
+  }
+}
+if (isset($_GET['getpayment'])) {
+  $user_id = $_SESSION['u_info']['id'];
+  $getSql = "SELECT * FROM paid WHERE user_id='$user_id'";
+  $data = $__DB__->SelectSingle($getSql);
+  $_SESSION['paidInfo']=$data;
+  if ($data) {
+    echo json_encode($data);
+  } else {
+    echo json_encode(array(
+      "status" => false,
+      "message" => "You Don't Have Any Notification Yet"
+    ));
+  }
+}
+
+
+
+
+if (isset($_GET['getusernoti'])) {
+  $user_id = $_SESSION['u_info']['id'];
+  $sql = "SELECT * FROM users WHERE id='3'";
+  $query = $__DB__->SelectSingle($sql);
+  if ($query) {
+    echo $query['verification'];
+  } else {
+    echo 0;
+  }
+}
+
+if (isset($_GET['deletenoti'])) {
+  $user_id = $_SESSION['u_info']['id'];
+  $sql = "SELECT * FROM users WHERE id='3'";
+  $query = $__DB__->SelectSingle($sql);
+  if ($query) {
+    echo $query['verification'];
+  } else {
+    echo 0;
+  }
+}
+
+
 ?>

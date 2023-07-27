@@ -60,7 +60,7 @@ function SignUp() {
           __ghs("#message").style.display = "block";
           __ghs("#SignupForm").reset();
           __ghs("#message").textContent = data.message;
-          window.location.href = "http://localhost:8000/bank/login";
+          window.location.href = "http://localhost:8000/bank/otp/index.php";
         } else {
           __ghs("#message").classList.add("error");
           __ghs("#message").style.display = "block";

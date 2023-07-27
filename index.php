@@ -50,6 +50,24 @@ if (!$session['id']) {
 <?php
 include_once('footer.php');
 ?>
+<script >
+      function ghs__(tag) {
+        return document.querySelector(tag);
+      }
+
+        function GetNoti() {
+        fetch(
+          `http://localhost:8000/Bank/API/server/functions/application.php?getusernoti=__ghs`
+        )
+          .then((res) => {
+            return res.text();
+          })
+          .then((data) => {
+            ghs__("#budget").textContent = data;
+          });
+      }
+      GetNoti();
+</script>
 <script src="src/assets/js/index.js"></script>
 <script src="src/assets/js/customize.js"></script>
 </body>
